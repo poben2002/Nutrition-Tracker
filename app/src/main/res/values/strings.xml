@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Nutrition Tracker</string>
-    <string name="login">Login</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="welcome_user">Welcome, User!</string>
-    <string name="nutritional_goals">Daily Nutritional Goals</string>
     <string name="logo">Logo</string>
+    <string name="sign_up_prompt">Don\'t have an account? <u>SignUp</u></string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="FirstName">FirstName</string>
+    <string name="LastName">LastName</string>
+    <string name="Email">Email</string>
+    <string name="ConfirmPass">Confirm Password</string>
+    <string name="Phone">Phone Number</string>
+    <string name="Height">Height</string>
+    <string name="Weight">Weight</string>
+    <string name="SignUp">Sign Up</string>
 </resources>
