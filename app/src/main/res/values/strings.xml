@@ -12,5 +12,6 @@
     <string name="Phone">Phone Number</string>
     <string name="Height">Height</string>
     <string name="Weight">Weight</string>
+    <string name="Calorie">Calorie Goal</string>
     <string name="SignUp">Sign Up</string>
 </resources>

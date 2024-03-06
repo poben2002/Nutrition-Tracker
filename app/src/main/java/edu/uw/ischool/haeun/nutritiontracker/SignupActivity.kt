@@ -19,7 +19,9 @@ class SignupActivity : AppCompatActivity() {
         val phoneEditText = findViewById<EditText>(R.id.phoneSignUpEditText)
         val heightEditText = findViewById<EditText>(R.id.heightEditText)
         val weightEditText = findViewById<EditText>(R.id.weightEditText)
+        val calorieEditText = findViewById<EditText>(R.id.calorieEditText)
         val signUpButton = findViewById<Button>(R.id.signUpButton)
+
 
         signUpButton.setOnClickListener {
             val username = userName.text.toString()
@@ -29,6 +31,7 @@ class SignupActivity : AppCompatActivity() {
             val phone = phoneEditText.text.toString()
             val height = heightEditText.text.toString()
             val weight = weightEditText.text.toString()
+            val calorie = calorieEditText.text.toString()
 
             if (username.isEmpty()) {
                 userName.error = "Enter your name"
@@ -68,6 +71,11 @@ class SignupActivity : AppCompatActivity() {
 
             if (weight.isEmpty()) {
                 weightEditText.error = "Enter your weight"
+                return@setOnClickListener
+            }
+
+            if (calorie.isEmpty()) {
+                calorieEditText.error = "Enter your daily calorie goal"
                 return@setOnClickListener
             }
 
