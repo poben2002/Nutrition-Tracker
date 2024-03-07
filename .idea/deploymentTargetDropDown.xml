@@ -2,6 +2,12 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="NotificationSettingActivity">
+        <State />
+      </entry>
+      <entry key="UserSettingActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
