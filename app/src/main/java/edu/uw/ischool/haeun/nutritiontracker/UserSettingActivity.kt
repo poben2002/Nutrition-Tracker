@@ -11,6 +11,7 @@ class UserSettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_setting)
 
+        // Debug code to print all preferences
         val preferences = PreferenceManager.getDefaultSharedPreferences(this).all
         preferences.forEach {
             Log.d("Preferences", "${it.key} -> ${it.value}")

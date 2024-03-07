@@ -10,8 +10,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.preference.PreferenceManager
 
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
-    val SETTINGS_NOTIFICATION_HOUR = "settings_notification_hour"
-    val SETTINGS_NOTIFICATION_MINUTE = "settings_notification_minute"
+    private val SETTINGS_NOTIFICATION_HOUR = "settings_notification_hour"
+    private val SETTINGS_NOTIFICATION_MINUTE = "settings_notification_minute"
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current time as the default values for the picker.
         val sharedPreferences = context?.let { PreferenceManager.getDefaultSharedPreferences(it) }
@@ -34,8 +34,8 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
         context?.let {
             PreferenceManager.getDefaultSharedPreferences(it).edit().apply {
-                putInt("settings_notification_hour", hourOfDay)
-                putInt("settings_notification_minute", minute)
+                putInt(SETTINGS_NOTIFICATION_HOUR, hourOfDay)
+                putInt(SETTINGS_NOTIFICATION_MINUTE, minute)
                 apply()
             }
         }

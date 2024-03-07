@@ -10,6 +10,7 @@ class NotificationSettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.notification_setting)
 
+        // Debug code to print all preferences
         val preferences = PreferenceManager.getDefaultSharedPreferences(this).all
         preferences.forEach {
             Log.d("Preferences", "${it.key} -> ${it.value}")
