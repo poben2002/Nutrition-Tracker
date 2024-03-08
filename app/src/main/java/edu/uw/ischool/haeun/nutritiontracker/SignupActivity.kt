@@ -2,15 +2,25 @@ package edu.uw.ischool.haeun.nutritiontracker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import db.User
+import db.UserDao
+import db.DatabaseHelper
 
 class SignupActivity : AppCompatActivity() {
+
+    private lateinit var userDao: UserDao
+    private lateinit var databaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup)
+
+        userDao = UserDao(this)
+        databaseHelper = DatabaseHelper(this)
 
         val userName = findViewById<EditText>(R.id.UserName)
         val emailEditText = findViewById<EditText>(R.id.emailSignUpEditText)
@@ -22,7 +32,6 @@ class SignupActivity : AppCompatActivity() {
         val calorieEditText = findViewById<EditText>(R.id.calorieEditText)
         val signUpButton = findViewById<Button>(R.id.signUpButton)
 
-
         signUpButton.setOnClickListener {
             val username = userName.text.toString()
             val email = emailEditText.text.toString()
@@ -33,55 +42,36 @@ class SignupActivity : AppCompatActivity() {
             val weight = weightEditText.text.toString()
             val calorie = calorieEditText.text.toString()
 
-            if (username.isEmpty()) {
-                userName.error = "Enter your name"
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() ||
+                passwordConfirm.isEmpty() || phone.isEmpty() || height.isEmpty() ||
+                weight.isEmpty() || calorie.isEmpty()) {
+                // Handle input validation errors
+                // You can show an error message or highlight the fields with errors
+                // For simplicity, I'm just logging an error message
+                Log.e("SignupActivity", "All fields are required")
                 return@setOnClickListener
             }
 
-            if (email.isEmpty()) {
-                emailEditText.error = "Enter your email"
-                return@setOnClickListener
-            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailEditText.error = "Enter a valid email address"
-                return@setOnClickListener
-            }
+            // Assuming the user input is valid, proceed with signup
+            // Here, you should add the user to the database
+            val user = User(0, email, password)
+            userDao.insertUser(user)
 
-            if (password.isEmpty()) {
-                passwordEditText.error = "Enter your password"
-                return@setOnClickListener
-            }
+            // Log out the contents of the database
+            logDatabaseContents()
 
-            if (passwordConfirm.isEmpty() || password != passwordConfirm) {
-                passwordEditTextConfirm.error = "Password confirmation does not match"
-                return@setOnClickListener
-            }
-
-            if (phone.isEmpty()) {
-                phoneEditText.error = "Enter your phone number"
-                return@setOnClickListener
-            } else if (phone.length != 10) {
-                phoneEditText.error = "Enter a valid phone number"
-                return@setOnClickListener
-            }
-
-            if (height.isEmpty()) {
-                heightEditText.error = "Enter your height"
-                return@setOnClickListener
-            }
-
-            if (weight.isEmpty()) {
-                weightEditText.error = "Enter your weight"
-                return@setOnClickListener
-            }
-
-            if (calorie.isEmpty()) {
-                calorieEditText.error = "Enter your daily calorie goal"
-                return@setOnClickListener
-            }
-
+            // Start the LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun logDatabaseContents() {
+        // Retrieve all users from the database and log them
+        val users = userDao.getAllUsers()
+        for (user in users) {
+            Log.d("Database", "User: $user")
         }
     }
 }
