@@ -26,10 +26,6 @@ class SignupActivity : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.emailSignUpEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordSignUpEditText)
         val passwordEditTextConfirm = findViewById<EditText>(R.id.passwordConfirmEditText)
-        val phoneEditText = findViewById<EditText>(R.id.phoneSignUpEditText)
-        val heightEditText = findViewById<EditText>(R.id.heightEditText)
-        val weightEditText = findViewById<EditText>(R.id.weightEditText)
-        val calorieEditText = findViewById<EditText>(R.id.calorieEditText)
         val signUpButton = findViewById<Button>(R.id.signUpButton)
 
         signUpButton.setOnClickListener {
@@ -37,17 +33,13 @@ class SignupActivity : AppCompatActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             val passwordConfirm = passwordEditTextConfirm.text.toString()
-            val phone = phoneEditText.text.toString()
-            val height = heightEditText.text.toString()
-            val weight = weightEditText.text.toString()
-            val calorie = calorieEditText.text.toString()
+            //val phone = phoneEditText.text.toString()
+            //val height = heightEditText.text.toString()
+            //val weight = weightEditText.text.toString()
+            //val calorie = calorieEditText.text.toString()
 
             if (username.isEmpty() || email.isEmpty() || password.isEmpty() ||
-                passwordConfirm.isEmpty() || phone.isEmpty() || height.isEmpty() ||
-                weight.isEmpty() || calorie.isEmpty()) {
-                // Handle input validation errors
-                // You can show an error message or highlight the fields with errors
-                // For simplicity, I'm just logging an error message
+                passwordConfirm.isEmpty()) {
                 Log.e("SignupActivity", "All fields are required")
                 return@setOnClickListener
             }

@@ -8,6 +8,7 @@ import androidx.preference.PreferenceFragmentCompat
 class UserSettingFragment : PreferenceFragmentCompat() {
     private val SETTINGS_WEIGHT = "settings_weight"
     private val SETTINGS_HEIGHT = "settings_height"
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.user_settings, rootKey)
         val weightPreference: EditTextPreference? = findPreference(SETTINGS_WEIGHT)
