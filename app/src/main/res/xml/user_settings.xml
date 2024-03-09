@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
-        android:key="settings_weight"
-        android:title="@string/Weight" />
-    <EditTextPreference
-        android:key="settings_height"
-        android:title="@string/Height" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="settings_personal_info_category"
+        android:title="@string/PersonalInfoCategory">
+        <EditTextPreference
+            android:key="settings_age"
+            android:title="@string/Age"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entries="@array/sex_entries"
+            android:entryValues="@array/sex_values"
+            android:key="settings_sex"
+            android:title="@string/Sex"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:key="settings_weight"
+            android:title="@string/Weight"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:key="settings_height"
+            android:title="@string/Height"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="settings_nutrition_category"
+        android:title="@string/NutritionCategory">
+        <ListPreference
+            android:entries="@array/workout_days_entries"
+            android:entryValues="@array/workout_days_values"
+            android:key="settings_workout_days"
+            android:title="@string/WorkoutDays"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entries="@array/weight_goal_entries"
+            android:entryValues="@array/weight_goal_values"
+            android:key="settings_weight_goal"
+            android:title="@string/WeightGoal"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
 </PreferenceScreen>

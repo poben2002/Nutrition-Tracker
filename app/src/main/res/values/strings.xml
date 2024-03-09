@@ -18,4 +18,10 @@
     <string name="NotificationTime">Notification Time</string>
     <string name="NotificationTimeSummary">Adjust when to get notifications</string>
     <string name="notification_setting">Notification Setting</string>
+    <string name="Age">Age</string>
+    <string name="Sex">Sex</string>
+    <string name="PersonalInfoCategory">Personal Information</string>
+    <string name="NutritionCategory">Nutrition Settings</string>
+    <string name="WorkoutDays">Workout Days in a Week (30+ Minutes)</string>
+    <string name="WeightGoal">Weight Goal</string>
 </resources>
