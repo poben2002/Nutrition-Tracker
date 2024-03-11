@@ -24,9 +24,11 @@
         </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".UserSettingActivity"
-            android:label="@string/user_setting" />
+            android:label="@string/user_setting"
+            android:parentActivityName=".HomepageActivity" />
         <activity android:name=".NotificationSettingActivity"
-            android:label="@string/notification_setting" />
+            android:label="@string/notification_setting"
+            android:parentActivityName=".HomepageActivity" />
         <activity android:name=".HomepageActivity"> </activity>
     </application>
 
