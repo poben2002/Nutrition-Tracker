@@ -24,6 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignupActivity" />
+        <activity android:name=".AddDataActivity">
+        </activity>
         <activity android:name=".UserSettingActivity"
             android:label="@string/user_setting"
             android:parentActivityName=".HomepageActivity" />
