@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import android.content.Intent
+import android.preference.PreferenceManager
 
 
 class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -16,6 +16,18 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         preferences.registerOnSharedPreferenceChangeListener(this)
+
+        // Retrieve data from AddDataActivity intent
+        val foodName = intent.getStringExtra("foodName")
+        val portionSize = intent.getFloatExtra("portionSize", 0.0f)
+        val calorieCount = intent.getIntExtra("calorieCount", 0)
+
+        // Update dashboard UI
+        val dashboardTextView: TextView = findViewById(R.id.recentlyAddedFoodTextView)
+        val currentText = dashboardTextView.text.toString()
+        val newText = "$currentText\n$foodName - Portion: $portionSize, Calories: $calorieCount"
+        dashboardTextView.text = newText
+
 
         updateCalorieGoal(preferences)
 
