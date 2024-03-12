@@ -110,6 +110,7 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
     private fun updateRemainingCalories() {
         val remainingCalories = calorieGoal - totalCaloriesConsumed
         val remainingCaloriesTextView: TextView = findViewById(R.id.remainingCaloriesTextView)
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putInt("remaining_calories", remainingCalories).apply()
         remainingCaloriesTextView.text = "Remaining Calories: $remainingCalories"
     }
 

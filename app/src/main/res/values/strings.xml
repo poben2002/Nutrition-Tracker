@@ -28,4 +28,6 @@
     <string name="search_button">Search</string>
     <string name="adddata_button">Add New Food</string>
     <string name="add_button">Add</string>
+    <string name="channel_name">NutritionTracker</string>
+    <string name="channel_description">All Notifications</string>
 </resources>
