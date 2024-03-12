@@ -33,14 +33,16 @@ class SignupActivity : AppCompatActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             val passwordConfirm = passwordEditTextConfirm.text.toString()
-            //val phone = phoneEditText.text.toString()
-            //val height = heightEditText.text.toString()
-            //val weight = weightEditText.text.toString()
-            //val calorie = calorieEditText.text.toString()
+
 
             if (username.isEmpty() || email.isEmpty() || password.isEmpty() ||
                 passwordConfirm.isEmpty()) {
                 Log.e("SignupActivity", "All fields are required")
+                return@setOnClickListener
+            }
+
+            if (password != passwordConfirm) {
+                passwordEditTextConfirm.error = "Password is not matched"
                 return@setOnClickListener
             }
 

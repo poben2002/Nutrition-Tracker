@@ -8,8 +8,11 @@
         android:id="@+id/searchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Food Name"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:hint="Food Name" />
 
     <EditText
         android:id="@+id/portionEditText"
@@ -18,7 +21,10 @@
         android:hint="Portion Size"
         android:inputType="numberDecimal"
         android:layout_below="@id/searchbar"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp" />
 
     <EditText
         android:id="@+id/calorieEditText"
@@ -27,16 +33,19 @@
         android:hint="Calorie Count"
         android:inputType="number"
         android:layout_below="@id/portionEditText"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:backgroundTint="#0096FF"
         android:layout_below="@id/calorieEditText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#0096FF"
+        android:text="Add" />
 
 </RelativeLayout>

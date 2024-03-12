@@ -6,17 +6,87 @@
     android:background="#CCF2FC"
     android:padding="16dp">
 
+
+    <!-- Recently Added Food Info TextView -->
     <Button
         android:id="@+id/userSettingsButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="180dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
         android:backgroundTint="#0096FF"
         android:text="User Settings"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/notificationButton"
+        android:layout_width="180dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#0096FF"
+        android:text="Notification Settings"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userSettingsButton" />
+
+    <!-- Calorie Goal TextView -->
+
+    <!-- Remaining Calories TextView -->
+
+    <TextView
+        android:id="@+id/recentlyAddedFoodTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Recently Added Food: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notificationButton" />
+
+    <TextView
+        android:id="@+id/calorieGoalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="Your daily calorie goal: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recentlyAddedFoodTextView" />
+
+    <TextView
+        android:id="@+id/remainingCaloriesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Remaining Calories: "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calorieGoalTextView" />
+
+    <Button
+        android:id="@+id/searchBarButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="#0096FF"
+        android:text="Food Search"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remainingCaloriesTextView" />
 
     <Button
         android:id="@+id/nutritionDashboardButton"
@@ -24,73 +94,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="#0096FF"
-        android:text="Nutrition Dashboard"
+        android:text="Food Add"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userSettingsButton" />
-
-    <Button
-        android:id="@+id/notificationButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0096FF"
-        android:text="Notification Settings"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nutritionDashboardButton" />
-
-    <Button
-        android:id="@+id/searchBarButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0096FF"
-        android:text="Food Search"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationButton" />
-
-    <!-- Recently Added Food Info TextView -->
-    <TextView
-        android:id="@+id/recentlyAddedFoodTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recently Added Food: "
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/searchBarButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Calorie Goal TextView -->
-    <TextView
-        android:id="@+id/calorieGoalTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your daily calorie goal: "
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/recentlyAddedFoodTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Remaining Calories TextView -->
-    <TextView
-        android:id="@+id/remainingCaloriesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remaining Calories: "
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/calorieGoalTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/searchBarButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
