@@ -15,7 +15,7 @@ class AddDataActivity : AppCompatActivity() {
 
         val addButton: Button = findViewById(R.id.addButton)
         addButton.setOnClickListener {
-            val foodEditText: EditText = findViewById(R.id.foodEditText)
+            val foodEditText: EditText = findViewById(R.id.searchbar)
             val portionEditText: EditText = findViewById(R.id.portionEditText)
             val calorieEditText: EditText = findViewById(R.id.calorieEditText)
 

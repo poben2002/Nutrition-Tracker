@@ -3,6 +3,8 @@ package edu.uw.ischool.haeun.nutritiontracker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -21,38 +23,48 @@ class SearchDataActivity : AppCompatActivity() {
         setContentView(R.layout.search_data)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api-ninjas.com")
+            .baseUrl("https://api.api-ninjas.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         nutritionAPI = retrofit.create(NutritionAPI::class.java)
 
-
-
         // search for a food item using API
         val searchButton: Button = findViewById(R.id.searchbutton)
-        val foodEditText: EditText = findViewById(R.id.foodEditText)
-        val input = foodEditText.text.toString()
+        val foodEditText: EditText = findViewById(R.id.searchbar)
+        val addbutton: Button = findViewById(R.id.addbutton)
+        var input = ""
+
         val output_name: TextView = findViewById(R.id.foodName)
         val output_calories: TextView = findViewById(R.id.calorieAmount)
 
+        addbutton.setOnClickListener {
+            val intent = Intent(this, HomepageActivity::class.java)
+            intent.putExtra("foodName", output_name.text.toString())
+            intent.putExtra("portionSize", 1)
+            intent.putExtra("calorieCount", output_calories.text.toString().toIntOrNull() ?: 0)
+            startActivity(intent)
+        }
+
+
         searchButton.setOnClickListener {
-
-
+            input = foodEditText.text.toString()
             if (input.isNotBlank()) {
-                //TODO: make GET API call using input variable
 
                 // Make API call
-                val call: Call<NutritionResponse> = nutritionAPI.getNutritionData()
+                val call: Call<NutritionResponse> = nutritionAPI.getNutritionData(input)
                 call.enqueue(object : Callback<NutritionResponse> {
                     override fun onResponse(call: Call<NutritionResponse>, response: Response<NutritionResponse>) {
                         if (response.isSuccessful) {
+
+                            // Successful API call
+                            Log.d("STATE", response.body().toString())
                             val nutritionResponse: NutritionResponse? = response.body()
                             if (nutritionResponse != null) {
                                 output_name.text = nutritionResponse.itemName
                                 output_calories.text = nutritionResponse.calories.toString()
+                                addbutton.visibility = View.VISIBLE
                             }
-
                         } else {
                             // Handle errors
                             Toast.makeText(this@SearchDataActivity, "Could not get a response from the API", Toast.LENGTH_SHORT).show()
@@ -70,9 +82,9 @@ class SearchDataActivity : AppCompatActivity() {
         }
 
         // redirect to add data activity
-        val addButton: Button = findViewById(R.id.adddatabutton)
-        addButton.setOnClickListener {
-            val foodEditText: EditText = findViewById(R.id.foodEditText)
+        val adddataButton: Button = findViewById(R.id.adddatabutton)
+        adddataButton.setOnClickListener {
+            val foodEditText: EditText = findViewById(R.id.searchbar)
             val intent = Intent(this, AddDataActivity::class.java)
             startActivity(intent)
             foodEditText.text.clear()

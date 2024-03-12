@@ -6,47 +6,70 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/foodEditText"
+        android:id="@+id/searchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="168dp"
         android:hint="@string/search_default"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="118dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/adddatabutton"
         android:layout_width="184dp"
         android:layout_height="52dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="114dp"
+        android:layout_marginBottom="36dp"
         android:backgroundTint="#0096FF"
-        android:text="@string/add_button"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="643dp" />
+        android:text="@string/adddata_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <ScrollView
-        android:layout_width="407dp"
-        android:layout_height="367dp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="251dp">
+        android:id="@+id/scrollView2"
+        android:layout_width="411dp"
+        android:layout_height="227dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/adddatabutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchbutton">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/foodName"
-                    android:layout_width="124dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="175dp"
+                    android:layout_height="44dp"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/calorieAmount"
-                    android:layout_width="114dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="84dp"
+                    android:layout_height="43dp"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/addbutton"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0096FF"
+                    android:text="Add This"
+                    android:visibility="gone" />
             </TableRow>
 
         </LinearLayout>
@@ -56,9 +79,14 @@
         android:id="@+id/searchbutton"
         android:layout_width="175dp"
         android:layout_height="48dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="259dp"
+        android:layout_marginEnd="118dp"
         android:backgroundTint="#0096FF"
         android:text="@string/search_button"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="183dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

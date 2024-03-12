@@ -5,7 +5,7 @@
     android:background="#CCF2FC">
 
     <EditText
-        android:id="@+id/foodEditText"
+        android:id="@+id/searchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Food Name"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:hint="Portion Size"
         android:inputType="numberDecimal"
-        android:layout_below="@id/foodEditText"
+        android:layout_below="@id/searchbar"
         android:layout_margin="16dp" />
 
     <EditText
