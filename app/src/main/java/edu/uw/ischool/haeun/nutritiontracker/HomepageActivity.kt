@@ -51,6 +51,11 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         val notificationButton: Button = findViewById(R.id.notificationButton)
         val searchBarButton: Button = findViewById(R.id.searchBarButton)
         val userSettingsButton: Button = findViewById(R.id.userSettingsButton)
+        val logoutButton: Button = findViewById(R.id.logoutButton)
+
+        logoutButton.setOnClickListener {
+            logout()
+        }
 
         nutritionDashBoardButton.setOnClickListener {
             startActivity(Intent(this, AddDataActivity::class.java))
@@ -112,4 +117,15 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         super.onDestroy()
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this)
     }
+
+    private fun logout() {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        preferences.edit().clear().apply()
+
+        // Navigate to the login screen
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

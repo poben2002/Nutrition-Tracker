@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import db.User
 import db.UserDao
@@ -38,6 +39,7 @@ class SignupActivity : AppCompatActivity() {
             if (username.isEmpty() || email.isEmpty() || password.isEmpty() ||
                 passwordConfirm.isEmpty()) {
                 Log.e("SignupActivity", "All fields are required")
+                Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
