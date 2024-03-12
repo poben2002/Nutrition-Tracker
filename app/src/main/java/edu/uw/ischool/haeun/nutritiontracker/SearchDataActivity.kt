@@ -61,17 +61,15 @@ class SearchDataActivity : AppCompatActivity() {
                         call: Call<List<NutritionResponse>>,
                         response: Response<List<NutritionResponse>>
                     ) {
-                        if (response.isSuccessful) {
+                        val nutritionResponse: List<NutritionResponse>? = response.body()
+                        if (response.isSuccessful && !nutritionResponse.isNullOrEmpty()) {
                             // Successful API call
-                            val nutritionResponse: List<NutritionResponse>? = response.body()
-                            if (nutritionResponse != null && nutritionResponse.first() != null) {
-                                outputName.text = nutritionResponse.first().name
-                                outputCalories.text = nutritionResponse.first().calories.toString() + " calories"
-                                addbutton.visibility = View.VISIBLE
-                            }
+                            outputName.text = nutritionResponse.first().name
+                            outputCalories.text = "${nutritionResponse.first().calories} calories"
+                            addbutton.visibility = View.VISIBLE
                         } else {
                             // Handle errors
-                            Toast.makeText(this@SearchDataActivity, "Could not get a response from the API", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@SearchDataActivity, "Could not find that food item", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -88,7 +86,6 @@ class SearchDataActivity : AppCompatActivity() {
         // redirect to add data activity
         val adddataButton: Button = findViewById(R.id.adddatabutton)
         adddataButton.setOnClickListener {
-            val foodEditText: EditText = findViewById(R.id.searchbar)
             val intent = Intent(this, AddDataActivity::class.java)
             startActivity(intent)
             foodEditText.text.clear()
