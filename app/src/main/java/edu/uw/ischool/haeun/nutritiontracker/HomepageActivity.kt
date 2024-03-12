@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.preference.PreferenceManager
+import android.view.View
 
 class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     private var calorieGoal: Int = 0
@@ -26,9 +27,19 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
         // Update dashboard UI
         val dashboardTextView: TextView = findViewById(R.id.recentlyAddedFoodTextView)
-        val currentText = dashboardTextView.text.toString()
-        val newText = "$currentText\n$foodName - Portion: $portionSize, Calories: $calorieCount"
-        dashboardTextView.text = newText
+
+        // Check if the data is not null
+        if (foodName != null && portionSize > 0 && calorieCount > 0) {
+            // If data is not null, set the text and make the TextView visible
+            val currentText = dashboardTextView.text.toString()
+            val newText = "$currentText\n$foodName - Portion: $portionSize, Calories: $calorieCount"
+            dashboardTextView.text = newText
+            dashboardTextView.visibility = View.VISIBLE
+        } else {
+            // If data is null, hide the TextView
+            dashboardTextView.visibility = View.GONE
+        }
+
 
         // Update total calories consumed
         totalCaloriesConsumed += calorieCount
