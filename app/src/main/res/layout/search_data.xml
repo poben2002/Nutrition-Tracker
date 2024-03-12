@@ -48,12 +48,12 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="211dp">
 
                 <TextView
                     android:id="@+id/foodName"
-                    android:layout_width="175dp"
-                    android:layout_height="44dp"
+                    android:layout_width="134dp"
+                    android:layout_height="match_parent"
                     android:textAlignment="center"
                     android:textSize="24sp"
                     android:visibility="visible" />
