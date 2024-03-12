@@ -1,5 +1,6 @@
 package edu.uw.ischool.haeun.nutritiontracker
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
@@ -7,11 +8,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 
 class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     private var calorieGoal: Int = 0
-    private var totalCaloriesConsumed: Int = 0
+    private var newCalsConsumed: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +43,8 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
             dashboardTextView.visibility = View.GONE
         }
 
-
         // Update total calories consumed
-        totalCaloriesConsumed += calorieCount
+        newCalsConsumed = calorieCount
 
         updateCalorieGoal(preferences)
         updateRemainingCalories()
@@ -52,9 +54,14 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         val searchBarButton: Button = findViewById(R.id.searchBarButton)
         val userSettingsButton: Button = findViewById(R.id.userSettingsButton)
         val logoutButton: Button = findViewById(R.id.logoutButton)
+        val resetButton: Button = findViewById(R.id.resetButton)
 
         logoutButton.setOnClickListener {
             logout()
+        }
+
+        resetButton.setOnClickListener {
+            resetCalories()
         }
 
         nutritionDashBoardButton.setOnClickListener {
@@ -108,10 +115,24 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
     }
 
     private fun updateRemainingCalories() {
-        val remainingCalories = calorieGoal - totalCaloriesConsumed
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        // save new calorie amount eaten
+        editor.putInt("totalCaloriesConsumed", newCalsConsumed + sharedPreferences.getInt("totalCaloriesConsumed", 0))
+        newCalsConsumed = 0
+        editor.apply()
+
+        val remainingCalories = calorieGoal - sharedPreferences.getInt("totalCaloriesConsumed", 0)
         val remainingCaloriesTextView: TextView = findViewById(R.id.remainingCaloriesTextView)
+        val goalReached: TextView = findViewById(R.id.goalReachedTextView)
         PreferenceManager.getDefaultSharedPreferences(this).edit().putInt("remaining_calories", remainingCalories).apply()
         remainingCaloriesTextView.text = "Remaining Calories: $remainingCalories"
+        if (remainingCalories <= 0) {
+            goalReached.visibility = View.VISIBLE
+            Toast.makeText(this@HomepageActivity, "Congratulations! You Hit Today's Goal!", Toast.LENGTH_LONG).show()
+        } else {
+            goalReached.visibility = View.INVISIBLE
+        }
     }
 
     override fun onDestroy() {
@@ -120,6 +141,12 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
     }
 
     private fun logout() {
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("totalCaloriesConsumed", 0)
+        newCalsConsumed = 0
+        editor.apply()
+
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         preferences.edit().clear().apply()
 
@@ -127,6 +154,15 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun resetCalories() {
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("totalCaloriesConsumed", 0)
+        newCalsConsumed = 0
+        editor.apply()
+        updateRemainingCalories()
     }
 
 }
