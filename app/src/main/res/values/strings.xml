@@ -24,4 +24,7 @@
     <string name="NutritionCategory">Nutrition Settings</string>
     <string name="WorkoutDays">Workout Days in a Week (30+ Minutes)</string>
     <string name="WeightGoal">Weight Goal</string>
+    <string name="search_default">Enter Food Name</string>
+    <string name="search_button">Search</string>
+    <string name="add_button">Add Your Own Food</string>
 </resources>
