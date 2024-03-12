@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.preference.PreferenceManager
 
-
 class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
+    private var calorieGoal: Int = 0
+    private var totalCaloriesConsumed: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage)
@@ -28,8 +30,11 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         val newText = "$currentText\n$foodName - Portion: $portionSize, Calories: $calorieCount"
         dashboardTextView.text = newText
 
+        // Update total calories consumed
+        totalCaloriesConsumed += calorieCount
 
         updateCalorieGoal(preferences)
+        updateRemainingCalories()
 
         val nutritionDashBoardButton: Button = findViewById(R.id.nutritionDashboardButton)
         val notificationButton: Button = findViewById(R.id.notificationButton)
@@ -71,7 +76,7 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         val weightGoal = preferences?.getString("settings_weight_goal", "") ?: "maintain"
         val sex = preferences?.getString("settings_sex", "female") ?: "female"
 
-        val calorieGoal = CalorieCalculator.calculateCalorieGoals(
+        calorieGoal = CalorieCalculator.calculateCalorieGoals(
             height.toDouble(),
             weight.toDouble(),
             sex,
@@ -82,6 +87,14 @@ class HomepageActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
         val calorieGoalTextView: TextView = findViewById(R.id.calorieGoalTextView)
         calorieGoalTextView.text = "Your daily calorie goal: $calorieGoal"
+
+        updateRemainingCalories()
+    }
+
+    private fun updateRemainingCalories() {
+        val remainingCalories = calorieGoal - totalCaloriesConsumed
+        val remainingCaloriesTextView: TextView = findViewById(R.id.remainingCaloriesTextView)
+        remainingCaloriesTextView.text = "Remaining Calories: $remainingCalories"
     }
 
     override fun onDestroy() {
