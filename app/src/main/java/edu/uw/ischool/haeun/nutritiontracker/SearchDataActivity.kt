@@ -14,6 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.roundToInt
 
 class SearchDataActivity : AppCompatActivity() {
     private lateinit var nutritionAPI: NutritionAPI
@@ -35,14 +36,16 @@ class SearchDataActivity : AppCompatActivity() {
         val addbutton: Button = findViewById(R.id.addbutton)
         var input = ""
 
-        val output_name: TextView = findViewById(R.id.foodName)
-        val output_calories: TextView = findViewById(R.id.calorieAmount)
+        val outputName: TextView = findViewById(R.id.foodName)
+        val outputCalories: TextView = findViewById(R.id.calorieAmount)
 
         addbutton.setOnClickListener {
             val intent = Intent(this, HomepageActivity::class.java)
-            intent.putExtra("foodName", output_name.text.toString())
-            intent.putExtra("portionSize", 1)
-            intent.putExtra("calorieCount", output_calories.text.toString().toIntOrNull() ?: 0)
+            val calories =  outputCalories.text.substring(0, outputCalories.text.length - 9)
+            Log.d("CAL_COUNT", calories)
+            intent.putExtra("foodName", outputName.text.toString())
+            intent.putExtra("portionSize", 1.0f)
+            intent.putExtra("calorieCount", calories.toFloat().roundToInt())
             startActivity(intent)
         }
 
@@ -52,17 +55,18 @@ class SearchDataActivity : AppCompatActivity() {
             if (input.isNotBlank()) {
 
                 // Make API call
-                val call: Call<NutritionResponse> = nutritionAPI.getNutritionData(input)
-                call.enqueue(object : Callback<NutritionResponse> {
-                    override fun onResponse(call: Call<NutritionResponse>, response: Response<NutritionResponse>) {
+                val call: Call<List<NutritionResponse>> = nutritionAPI.getNutritionData(input)
+                call.enqueue(object : Callback<List<NutritionResponse>> {
+                    override fun onResponse(
+                        call: Call<List<NutritionResponse>>,
+                        response: Response<List<NutritionResponse>>
+                    ) {
                         if (response.isSuccessful) {
-
                             // Successful API call
-                            Log.d("STATE", response.body().toString())
-                            val nutritionResponse: NutritionResponse? = response.body()
-                            if (nutritionResponse != null) {
-                                output_name.text = nutritionResponse.itemName
-                                output_calories.text = nutritionResponse.calories.toString()
+                            val nutritionResponse: List<NutritionResponse>? = response.body()
+                            if (nutritionResponse != null && nutritionResponse.first() != null) {
+                                outputName.text = nutritionResponse.first().name
+                                outputCalories.text = nutritionResponse.first().calories.toString() + " calories"
                                 addbutton.visibility = View.VISIBLE
                             }
                         } else {
@@ -71,7 +75,7 @@ class SearchDataActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<NutritionResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<List<NutritionResponse>>, t: Throwable) {
                         // Handle failures
                         Toast.makeText(this@SearchDataActivity, "Could not find the food in the database", Toast.LENGTH_SHORT).show()
                     }
