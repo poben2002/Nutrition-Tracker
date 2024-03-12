@@ -42,10 +42,10 @@ class SearchDataActivity : AppCompatActivity() {
         addbutton.setOnClickListener {
             val intent = Intent(this, HomepageActivity::class.java)
             val calories =  outputCalories.text.substring(0, outputCalories.text.length - 9)
-            Log.d("CAL_COUNT", calories)
             intent.putExtra("foodName", outputName.text.toString())
             intent.putExtra("portionSize", 1.0f)
             intent.putExtra("calorieCount", calories.toFloat().roundToInt())
+
             startActivity(intent)
         }
 
@@ -75,11 +75,11 @@ class SearchDataActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<List<NutritionResponse>>, t: Throwable) {
                         // Handle failures
-                        Toast.makeText(this@SearchDataActivity, "Could not find the food in the database", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SearchDataActivity, "Could not access the database", Toast.LENGTH_SHORT).show()
                     }
                 })
             } else {
-                Toast.makeText(this, "Please enter a food to search for", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter a food item", Toast.LENGTH_SHORT).show()
             }
         }
 
