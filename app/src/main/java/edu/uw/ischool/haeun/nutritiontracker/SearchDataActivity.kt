@@ -55,13 +55,13 @@ class SearchDataActivity : AppCompatActivity() {
 
                         } else {
                             // Handle errors
-                            Toast.makeText(this, "Could not get a response from the API", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@SearchDataActivity, "Could not get a response from the API", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(call: Call<NutritionResponse>, t: Throwable) {
                         // Handle failures
-                        Toast.makeText(this, "Could not find the food in the database", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SearchDataActivity, "Could not find the food in the database", Toast.LENGTH_SHORT).show()
                     }
                 })
             } else {
