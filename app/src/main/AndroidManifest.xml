@@ -32,7 +32,8 @@
         <activity android:name=".NotificationSettingActivity"
             android:label="@string/notification_setting"
             android:parentActivityName=".HomepageActivity" />
-        <activity android:name=".HomepageActivity"> </activity>
+        <activity android:name=".HomepageActivity" />
+        <activity android:name=".SearchDataActivity" />
     </application>
 
 </manifest>
